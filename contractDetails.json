@@ -1,391 +1,414 @@
 {
-    "contractAddress":"0x4C66Ee3FCC6871c037a94745d133FDAdc3EeDd6f",
+    "contractAddress":"0x07e0cFF970d7cba0d15DA9c95Bb99dbC9A7AD6F9",
     "abi": [
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "uint256",
-              "name": "fishId",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
-              "internalType": "string",
-              "name": "species",
-              "type": "string"
-            },
-            {
-              "indexed": false,
-              "internalType": "address",
-              "name": "owner",
-              "type": "address"
-            }
-          ],
-          "name": "FishAdded",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "uint256",
-              "name": "fishId",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
-              "internalType": "address",
-              "name": "processor",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "string",
-              "name": "details",
-              "type": "string"
-            }
-          ],
-          "name": "FishProcessed",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "uint256",
-              "name": "fishId",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
-              "internalType": "address",
-              "name": "from",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "address",
-              "name": "to",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "string",
-              "name": "transactionType",
-              "type": "string"
-            }
-          ],
-          "name": "FishTransferred",
-          "type": "event"
-        },
-        {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "participant",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "enum FisherySupplyChain.Role",
-              "name": "role",
-              "type": "uint8"
-            }
-          ],
-          "name": "ParticipantRegistered",
-          "type": "event"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "string",
-              "name": "species",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "catchLocation",
-              "type": "string"
-            },
-            {
-              "internalType": "uint256",
-              "name": "weight",
-              "type": "uint256"
-            }
-          ],
-          "name": "addFish",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "name": "fishes",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "id",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "species",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "catchLocation",
-              "type": "string"
-            },
-            {
-              "internalType": "uint256",
-              "name": "weight",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "currentOwner",
-              "type": "address"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "fishId",
-              "type": "uint256"
-            }
-          ],
-          "name": "getFish",
-          "outputs": [
-            {
-              "components": [
-                {
-                  "internalType": "uint256",
-                  "name": "id",
-                  "type": "uint256"
-                },
-                {
-                  "internalType": "string",
-                  "name": "species",
-                  "type": "string"
-                },
-                {
-                  "internalType": "string",
-                  "name": "catchLocation",
-                  "type": "string"
-                },
-                {
-                  "internalType": "uint256",
-                  "name": "weight",
-                  "type": "uint256"
-                },
-                {
-                  "internalType": "address",
-                  "name": "currentOwner",
-                  "type": "address"
-                },
-                {
-                  "internalType": "uint256[]",
-                  "name": "transactionIds",
-                  "type": "uint256[]"
-                }
-              ],
-              "internalType": "struct FisherySupplyChain.Fish",
-              "name": "",
-              "type": "tuple"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "fishId",
-              "type": "uint256"
-            }
-          ],
-          "name": "getFishHistory",
-          "outputs": [
-            {
-              "components": [
-                {
-                  "internalType": "uint256",
-                  "name": "id",
-                  "type": "uint256"
-                },
-                {
-                  "internalType": "address",
-                  "name": "from",
-                  "type": "address"
-                },
-                {
-                  "internalType": "address",
-                  "name": "to",
-                  "type": "address"
-                },
-                {
-                  "internalType": "string",
-                  "name": "transactionType",
-                  "type": "string"
-                },
-                {
-                  "internalType": "string",
-                  "name": "details",
-                  "type": "string"
-                },
-                {
-                  "internalType": "uint256",
-                  "name": "timestamp",
-                  "type": "uint256"
-                }
-              ],
-              "internalType": "struct FisherySupplyChain.Transaction[]",
-              "name": "",
-              "type": "tuple[]"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "",
-              "type": "address"
-            }
-          ],
-          "name": "participants",
-          "outputs": [
-            {
-              "internalType": "enum FisherySupplyChain.Role",
-              "name": "",
-              "type": "uint8"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "fishId",
-              "type": "uint256"
-            },
-            {
-              "internalType": "string",
-              "name": "details",
-              "type": "string"
-            }
-          ],
-          "name": "processFish",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "enum FisherySupplyChain.Role",
-              "name": "role",
-              "type": "uint8"
-            }
-          ],
-          "name": "registerParticipant",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "name": "transactions",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "id",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "from",
-              "type": "address"
-            },
-            {
-              "internalType": "address",
-              "name": "to",
-              "type": "address"
-            },
-            {
-              "internalType": "string",
-              "name": "transactionType",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "details",
-              "type": "string"
-            },
-            {
-              "internalType": "uint256",
-              "name": "timestamp",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
-        {
-          "inputs": [
-            {
-              "internalType": "uint256",
-              "name": "fishId",
-              "type": "uint256"
-            },
-            {
-              "internalType": "address",
-              "name": "to",
-              "type": "address"
-            },
-            {
-              "internalType": "string",
-              "name": "transactionType",
-              "type": "string"
-            },
-            {
-              "internalType": "string",
-              "name": "details",
-              "type": "string"
-            }
-          ],
-          "name": "transferFish",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-        }
-      ]
+      {
+        "inputs": [],
+        "stateMutability": "nonpayable",
+        "type": "constructor"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "fishId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "species",
+            "type": "string"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          }
+        ],
+        "name": "FishAdded",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "fishId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "processor",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "details",
+            "type": "string"
+          }
+        ],
+        "name": "FishProcessed",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "uint256",
+            "name": "fishId",
+            "type": "uint256"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "string",
+            "name": "transactionType",
+            "type": "string"
+          }
+        ],
+        "name": "FishTransferred",
+        "type": "event"
+      },
+      {
+        "anonymous": false,
+        "inputs": [
+          {
+            "indexed": true,
+            "internalType": "address",
+            "name": "participant",
+            "type": "address"
+          },
+          {
+            "indexed": false,
+            "internalType": "enum FisherySupplyChain.Role",
+            "name": "role",
+            "type": "uint8"
+          }
+        ],
+        "name": "ParticipantRegistered",
+        "type": "event"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "string",
+            "name": "species",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "catchLocation",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "weight",
+            "type": "uint256"
+          }
+        ],
+        "name": "addFish",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "participant",
+            "type": "address"
+          },
+          {
+            "internalType": "enum FisherySupplyChain.Role",
+            "name": "newRole",
+            "type": "uint8"
+          }
+        ],
+        "name": "changeParticipantRole",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "fishes",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "species",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "catchLocation",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "weight",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "currentOwner",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "fishId",
+            "type": "uint256"
+          }
+        ],
+        "name": "getFish",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "internalType": "string",
+                "name": "species",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "catchLocation",
+                "type": "string"
+              },
+              {
+                "internalType": "uint256",
+                "name": "weight",
+                "type": "uint256"
+              },
+              {
+                "internalType": "address",
+                "name": "currentOwner",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256[]",
+                "name": "transactionIds",
+                "type": "uint256[]"
+              }
+            ],
+            "internalType": "struct FisherySupplyChain.Fish",
+            "name": "",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "fishId",
+            "type": "uint256"
+          }
+        ],
+        "name": "getFishHistory",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+              },
+              {
+                "internalType": "string",
+                "name": "transactionType",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "details",
+                "type": "string"
+              },
+              {
+                "internalType": "uint256",
+                "name": "timestamp",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct FisherySupplyChain.Transaction[]",
+            "name": "",
+            "type": "tuple[]"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [],
+        "name": "owner",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+          }
+        ],
+        "name": "participants",
+        "outputs": [
+          {
+            "internalType": "enum FisherySupplyChain.Role",
+            "name": "",
+            "type": "uint8"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "fishId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "details",
+            "type": "string"
+          }
+        ],
+        "name": "processFish",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "transactions",
+        "outputs": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "from",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "transactionType",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "details",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "timestamp",
+            "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "fishId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "transactionType",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "details",
+            "type": "string"
+          }
+        ],
+        "name": "transferFish",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+    ]
 }

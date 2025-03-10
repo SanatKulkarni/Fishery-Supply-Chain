@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Web3 from 'web3';
 import contractDetails from '../../../contractDetails.json';
 
@@ -8,6 +8,7 @@ export default function OwnerRoleChangePage() {
     const [selectedRole, setSelectedRole] = useState('0');
     const [status, setStatus] = useState('');
     const [loading, setLoading] = useState(false);
+    const [isOwner, setIsOwner] = useState(false);
 
     const roles = [
         { value: '0', label: 'Fisherman' },
@@ -17,18 +18,43 @@ export default function OwnerRoleChangePage() {
         { value: '4', label: 'Consumer' }
     ];
 
+    useEffect(() => {
+        checkOwner();
+    }, []);
+
+    const checkOwner = async () => {
+        try {
+            if (!window.ethereum) {
+                throw new Error('Please install MetaMask');
+            }
+
+            const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+            const account = accounts[0];
+            const web3 = new Web3(window.ethereum);
+            const contract = new web3.eth.Contract(
+                contractDetails.abi,
+                contractDetails.contractAddress
+            );
+
+            const contractOwner = await contract.methods.owner().call();
+            setIsOwner(account.toLowerCase() === contractOwner.toLowerCase());
+        } catch (error) {
+            setStatus('Error: ' + error.message);
+        }
+    };
+
     const changeRole = async () => {
         try {
+            if (!isOwner) {
+                throw new Error('Only owner can change roles');
+            }
+
             if (!Web3.utils.isAddress(walletAddress)) {
                 throw new Error('Invalid wallet address');
             }
 
             setLoading(true);
-            setStatus('Connecting to MetaMask...');
-
-            if (!window.ethereum) {
-                throw new Error('Please install MetaMask');
-            }
+            setStatus('Processing role change...');
 
             const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
             const account = accounts[0];
@@ -50,12 +76,19 @@ export default function OwnerRoleChangePage() {
         }
     };
 
+    if (!isOwner) {
+        return <div className="container">
+            <h2 className="title">Access Denied</h2>
+            <p>Only the contract owner can access this page.</p>
+        </div>;
+    }
+
     return (
         <div className="container">
             <h2 className="title">Change Participant Role</h2>
             
             <div className="form-group">
-                <label htmlFor="address">Wallet Address:</label>
+                <label htmlFor="address">Participant Wallet Address:</label>
                 <input
                     type="text"
                     id="address"

@@ -54,11 +54,20 @@ contract FisherySupplyChain {
         _;
     }
 
-    // Functions
-    function registerParticipant(Role role) public {
-        require(participants[msg.sender] == Role(0), "Address already registered");
-        participants[msg.sender] = role;
-        emit ParticipantRegistered(msg.sender, role);
+    // Add after the state variables
+    address public owner;
+
+    // Add to constructor
+    constructor() {
+        owner = msg.sender;
+    }
+
+    // Add after existing functions
+    function changeParticipantRole(address participant, Role newRole) public {
+        require(msg.sender == owner, "Only owner can change participant roles");
+        require(participant != address(0), "Invalid participant address");
+        participants[participant] = newRole;
+        emit ParticipantRegistered(participant, newRole);
     }
 
     function addFish(
@@ -131,6 +140,8 @@ contract FisherySupplyChain {
 
         return history;
     }
+
+    
 
     // Internal function to add transaction
     function _addTransaction(
