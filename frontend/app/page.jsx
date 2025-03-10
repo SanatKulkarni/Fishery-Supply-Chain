@@ -47,6 +47,9 @@ export default function Home() {
           <Link href="/addFish" className="nav-button">
             Add New Fish
           </Link>
+          <Link href="/transferFish" className="nav-button">
+            Transfer Fish
+          </Link>
           {!loading && isOwner && (
             <Link href="/ownerRoleChange" className="nav-button">
               Change Participant Role (Owner Only)
