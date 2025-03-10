@@ -50,6 +50,9 @@ export default function Home() {
           <Link href="/transferFish" className="nav-button">
             Transfer Fish
           </Link>
+          <Link href="/processFish" className="nav-button">
+            Process Fish
+          </Link>
           {!loading && isOwner && (
             <Link href="/ownerRoleChange" className="nav-button">
               Change Participant Role (Owner Only)
