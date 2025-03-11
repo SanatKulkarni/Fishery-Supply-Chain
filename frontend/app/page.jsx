@@ -370,7 +370,7 @@ const dashboardCards = [
   {
     title: "Register as Participant",
     description: "Join the supply chain network as a verified participant with your specific role.",
-    link: "/ownerRoleChange",
+    link: "/participant",
     iconBg: "bg-blue-500",
     icon: (
       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
