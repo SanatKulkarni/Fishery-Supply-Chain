@@ -55,8 +55,29 @@ export default function ProcessFishPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-            <div className="w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden">
+        <div className="min-h-screen bg-gradient-to-br from-cyan-50 to-blue-100 flex items-center justify-center p-4">
+            {/* Back Button */}
+            <a 
+                href="/"
+                className="fixed top-6 left-6 bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 z-50 group"
+                title="Back to Home"
+            >
+                <svg 
+                    className="w-6 h-6 text-gray-600 group-hover:text-cyan-500 transition-colors" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                >
+                    <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2} 
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                    />
+                </svg>
+            </a>
+
+            <div className="w-full max-w-4xl bg-white/90 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-cyan-100">
                 {/* Header section with gradient background */}
                 <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white">
                     <h1 className="text-3xl font-bold tracking-tight">Fish Processing Portal</h1>

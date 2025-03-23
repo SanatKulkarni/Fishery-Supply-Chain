@@ -90,100 +90,143 @@ export default function ParticipantsPage() {
             gray: 'bg-gray-100 text-gray-800 border-gray-200 ring-gray-400'
         };
         return colorMap[color] || colorMap.gray;
-    };
+    };    return (
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-12 px-4">
+            {/* Back Button */}
+            <a 
+                href="/"
+                className="fixed top-6 left-6 bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 z-50 group"
+                title="Back to Home"
+            >
+                <svg 
+                    className="w-6 h-6 text-gray-600 group-hover:text-blue-600 transition-colors" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                >
+                    <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2} 
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                    />
+                </svg>
+            </a>
 
-    return (
-        <div className="max-w-4xl mx-auto p-8 bg-white rounded-2xl shadow-xl">
-            <div className="flex items-center mb-8">
-                <div className="bg-indigo-600 rounded-full p-3 mr-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                </div>
-                <h2 className="text-3xl font-bold text-gray-800">Supply Chain Participant Roles</h2>
-            </div>
-            
-            {currentRole && (
-                <div className={`rounded-xl p-6 mb-8 border ${
-                    currentRole === 'Not Registered' 
-                        ? 'bg-gray-50 border-gray-200' 
-                        : `${getColorClasses(getRoleColor(currentRole))}`
-                }`}>
-                    <h3 className="text-lg font-semibold mb-2">Current Status</h3>
-                    <div className="flex items-center">
-                        {currentRole !== 'Not Registered' ? (
-                            <>
-                                <div className="w-16 h-16 rounded-full flex items-center justify-center text-3xl mr-4 bg-opacity-50">
-                                    {roles.find(r => r.label === currentRole)?.icon || '👤'}
-                                </div>
-                                <div>
-                                    <p className="text-sm text-gray-600">You are registered as</p>
-                                    <p className="text-2xl font-bold">{currentRole}</p>
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <div className="w-16 h-16 rounded-full flex items-center justify-center text-3xl bg-gray-200 mr-4">
-                                    👤
-                                </div>
-                                <div>
-                                    <p className="text-sm text-gray-600">Your status</p>
-                                    <p className="text-2xl font-bold">Not Registered</p>
-                                    <p className="text-sm text-gray-500 mt-1">Click on any role below to learn more</p>
-                                </div>
-                            </>
-                        )}
-                    </div>
-                </div>
-            )}
-            
-            <div className="mb-8">
-                <h3 className="text-xl font-semibold text-gray-800 mb-4">Supply Chain Roles</h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
-                    {roles.map((role) => (
-                        <div 
-                            key={role.value}
-                            onClick={() => setSelectedRole(role.value === selectedRole ? null : role.value)}
-                            className={`relative cursor-pointer rounded-xl p-4 border transition-all duration-200 ${
-                                selectedRole === role.value 
-                                    ? `border-2 ${getColorClasses(role.color)} ring-2`
-                                    : 'border-gray-200 hover:border-gray-300 bg-white'
-                            }`}
-                        >
-                            <div className="flex flex-col items-center">
-                                <span className="text-3xl mb-2">{role.icon}</span>
-                                <span className={`font-medium ${
-                                    selectedRole === role.value 
-                                        ? getColorClasses(role.color).split(' ').find(cls => cls.startsWith('text-'))
-                                        : 'text-gray-700'
-                                }`}>
-                                    {role.label}
-                                </span>
-                            </div>
-                            {selectedRole === role.value && (
-                                <div className="absolute -top-2 -right-2 bg-indigo-600 rounded-full w-6 h-6 flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                            )}
+            <div className="max-w-5xl mx-auto bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 overflow-hidden">
+                {/* Header Section */}
+                <div className="relative bg-gradient-to-r from-indigo-600 to-blue-500 p-8 overflow-hidden">
+                    <div className="absolute inset-0 bg-grid-white/10"></div>
+                    <div className="relative flex items-center z-10">
+                        <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-3 mr-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
                         </div>
-                    ))}
+                        <div>
+                            <h2 className="text-3xl font-bold text-white mb-1">Supply Chain Participant Roles</h2>
+                            <p className="text-blue-100">Select your role in the supply chain network</p>
+                        </div>
+                    </div>
+                    <div className="absolute right-0 bottom-0 transform translate-x-1/4 translate-y-1/4">
+                        <div className="w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+                    </div>
+                </div>
+
+                <div className="p-8">
+                    {/* Current Status Card */}
+                    {currentRole && (
+                        <div className={`rounded-2xl p-8 mb-12 border shadow-lg transform transition-all duration-300 hover:scale-[1.02] ${
+                            currentRole === 'Not Registered' 
+                                ? 'bg-gradient-to-br from-gray-50 to-gray-100 border-gray-200' 
+                                : `${getColorClasses(getRoleColor(currentRole))}`
+                        }`}>
+                            <h3 className="text-lg font-semibold mb-4 flex items-center">
+                                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Current Status
+                            </h3>
+                            <div className="flex items-center">
+                                {currentRole !== 'Not Registered' ? (
+                                    <>
+                                        <div className="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl mr-6 bg-white shadow-inner">
+                                            {roles.find(r => r.label === currentRole)?.icon || '👤'}
+                                        </div>
+                                        <div>
+                                            <p className="text-sm font-medium opacity-75">You are registered as</p>
+                                            <p className="text-3xl font-bold mt-1">{currentRole}</p>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <>
+                                        <div className="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl bg-gray-100 mr-6 shadow-inner">
+                                            👤
+                                        </div>
+                                        <div>
+                                            <p className="text-sm font-medium opacity-75">Your status</p>
+                                            <p className="text-3xl font-bold mt-1">Not Registered</p>
+                                            <p className="text-sm opacity-75 mt-2">Click on any role below to learn more</p>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Roles Grid */}
+                    <div className="mb-12">
+                        <h3 className="text-2xl font-bold text-gray-800 mb-6">Available Roles</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                            {roles.map((role) => (
+                                <div 
+                                    key={role.value}
+                                    onClick={() => setSelectedRole(role.value === selectedRole ? null : role.value)}
+                                    className={`relative cursor-pointer rounded-2xl p-6 border transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1 ${
+                                        selectedRole === role.value 
+                                            ? `border-2 ${getColorClasses(role.color)} ring-2 shadow-lg`
+                                            : 'border-gray-100 hover:border-gray-200 bg-white'
+                                    }`}
+                                >
+                                    <div className="flex flex-col items-center">
+                                        <span className="text-4xl mb-4 transform transition-transform duration-300 hover:scale-110">{role.icon}</span>
+                                        <span className={`font-semibold ${
+                                            selectedRole === role.value 
+                                                ? getColorClasses(role.color).split(' ').find(cls => cls.startsWith('text-'))
+                                                : 'text-gray-700'
+                                        }`}>
+                                            {role.label}
+                                        </span>
+                                    </div>
+                                    {selectedRole === role.value && (
+                                        <div className="absolute -top-2 -right-2 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full w-8 h-8 flex items-center justify-center shadow-lg">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Selected Role Details */}
+                    {selectedRole !== null && (
+                        <div className={`mt-8 p-8 rounded-2xl border-2 shadow-lg transform transition-all duration-300 ${getColorClasses(roles.find(r => r.value === selectedRole)?.color || 'gray')}`}>
+                            <div className="flex items-center mb-6">
+                                <span className="text-5xl mr-6">{roles.find(r => r.value === selectedRole)?.icon}</span>
+                                <div>
+                                    <h3 className="text-2xl font-bold mb-1">{roles.find(r => r.value === selectedRole)?.label} Role</h3>
+                                    <p className="text-sm opacity-75">Detailed role information</p>
+                                </div>
+                            </div>
+                            <p className="text-gray-700 leading-relaxed text-lg">
+                                {roles.find(r => r.value === selectedRole)?.description}
+                            </p>
+                        </div>
+                    )}
                 </div>
             </div>
-
-            {selectedRole !== null && (
-                <div className={`mt-6 p-6 rounded-xl border-2 ${getColorClasses(roles.find(r => r.value === selectedRole)?.color || 'gray')}`}>
-                    <div className="flex items-center mb-4">
-                        <span className="text-4xl mr-4">{roles.find(r => r.value === selectedRole)?.icon}</span>
-                        <h3 className="text-2xl font-bold">{roles.find(r => r.value === selectedRole)?.label} Role</h3>
-                    </div>
-                    <p className="text-gray-700 leading-relaxed">
-                        {roles.find(r => r.value === selectedRole)?.description}
-                    </p>
-                </div>
-            )}
         </div>
     );
 }

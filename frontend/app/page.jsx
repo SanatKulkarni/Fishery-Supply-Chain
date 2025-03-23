@@ -215,24 +215,23 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-100 to-blue-50">
       <div className="container mx-auto px-4 py-12">
-        <div className="flex flex-col items-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4 text-center">
-              Supply Chain <span className="text-blue-600">Dashboard</span>
-            </h1>
-            <p className="text-gray-600 text-center max-w-2xl">
-              Welcome to your fishery supply chain management center. Select an option below to proceed.
-            </p>
-          </motion.div>
-          
-          <div className="bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium mt-4">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <h1 className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-500 mb-4">
+            Supply Chain Dashboard
+          </h1>
+          <p className="text-gray-600 text-xl max-w-2xl mx-auto">
+            Welcome to your fishery supply chain management center. Select an option below to proceed.
+          </p>
+          <div className="inline-flex items-center bg-gradient-to-r from-blue-600 to-teal-500 text-white px-6 py-3 rounded-full text-sm font-medium mt-6 shadow-lg">
+            <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
             Wallet Connected
           </div>
-        </div>
+        </motion.div>
         
         <motion.div 
           initial={{ opacity: 0 }}
@@ -247,27 +246,24 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 + index * 0.1 }}
               whileHover={{ y: -5, scale: 1.02 }}
-              className="relative"
+              className="relative group"
             >
               <Link href={card.link} className="block">
-                <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
-                  <div className="p-6 flex flex-col h-full">
-                    <div className="flex items-start mb-4">
-                      <div className={`p-3 rounded-lg ${card.iconBg}`}>
-                        <div className="text-white">
-                          {card.icon}
-                        </div>
+                <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full border border-gray-100">
+                  <div className="p-8 flex flex-col h-full relative">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-50 to-teal-50 rounded-bl-full -mr-16 -mt-16 transition-all duration-500 group-hover:scale-150"></div>
+                    <div className={`${card.iconBg} w-14 h-14 rounded-2xl flex items-center justify-center mb-6 shadow-lg transform transition-transform group-hover:scale-110 relative`}>
+                      <div className="text-white">
+                        {card.icon}
                       </div>
                     </div>
-                    <h2 className="text-xl font-bold text-gray-800 mb-2">{card.title}</h2>
-                    <p className="text-gray-600 mb-4">{card.description}</p>
-                    <div className="mt-auto pt-4">
-                      <span className="inline-flex items-center text-blue-600 font-medium">
-                        Get Started
-                        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-                        </svg>
-                      </span>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-3">{card.title}</h2>
+                    <p className="text-gray-600 mb-6 flex-grow">{card.description}</p>
+                    <div className="flex items-center text-blue-600 font-medium group-hover:text-blue-700 transition-colors">
+                      Get Started
+                      <svg className="w-5 h-5 ml-2 transform transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                      </svg>
                     </div>
                   </div>
                 </div>
@@ -275,32 +271,33 @@ export default function Home() {
             </motion.div>
           ))}
           
+          {/* Owner card with special styling */}
           {!loading && isOwner && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 + dashboardCards.length * 0.1 }}
               whileHover={{ y: -5, scale: 1.02 }}
+              className="relative group"
             >
               <Link href="/ownerRoleChange" className="block">
-                <div className="bg-gradient-to-r from-blue-600 to-teal-500 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden h-full">
-                  <div className="p-6 flex flex-col h-full">
-                    <div className="flex items-start mb-4">
-                      <div className="p-3 rounded-lg bg-white/20">
-                        <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <div className="bg-gradient-to-r from-blue-600 to-teal-500 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full">
+                  <div className="p-8 flex flex-col h-full relative backdrop-blur-sm">
+                    <div className="absolute inset-0 bg-white/5"></div>
+                    <div className="relative">
+                      <div className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mb-6 shadow-lg backdrop-blur-sm">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
                         </svg>
                       </div>
-                    </div>
-                    <h2 className="text-xl font-bold text-white mb-2">Change Participant Role</h2>
-                    <p className="text-white/90 mb-4">Owner only: Manage participant roles and permissions in the network.</p>
-                    <div className="mt-auto pt-4">
-                      <span className="inline-flex items-center text-white font-medium">
+                      <h2 className="text-2xl font-bold text-white mb-3">Change Participant Role</h2>
+                      <p className="text-white/90 mb-6">Owner only: Manage participant roles and permissions in the network.</p>
+                      <div className="flex items-center text-white font-medium group-hover:text-white/90 transition-colors">
                         Admin Panel
-                        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <svg className="w-5 h-5 ml-2 transform transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                         </svg>
-                      </span>
+                      </div>
                     </div>
                   </div>
                 </div>
